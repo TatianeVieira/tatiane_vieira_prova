@@ -53,8 +53,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST" ){
     <form action="alterar_usuario.php" method="POST">
         <label for="busca_usuario">Digite o ID ou NOME do usuario</label>
         <input type="text" id="busca_usuario" name="busca_usuario" required onkeyup="buscarSugestoes()">
-        <button type="submit">Pesquisar</button>
+
+    <!--DIV para exibir sugestoes de usuario-->
+    <div id="sugestoes"></div>
+    <button type="submit">Buscar</button>
     </form>
+
+    <?php if($usuario): ?>
+    <!--formulario para alterar usuario-->
+    <form action="processa_alteracao_usuario.php" method="POST">
+        <input type="hidden" name="id_usuario" value="<?=htmlspecialchars($usuario['id_usuario'])?>">
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="<?=htmlspecialchars($usuario['nome'])?>"required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" value="<?=htmlspecialchars($usuario['email'])?>"required>
+
+        <label for="id_perfil">Perfil</label>
+        <select name="id_perfil" id="id_perfil">
+            <option value="1" <?php$usuario['id_perfil'] == 1? 'select':''?>>Administrador</option>
+            <option value="2" <?php$usuario['id_perfil'] == 1? 'select':''?>>Administrador</option>
+            <option value="3" <?php$usuario['id_perfil'] == 1? 'select':''?>>Administrador</option>
+            <option value="4" <?php$usuario['id_perfil'] == 1? 'select':''?>>Administrador</option>
+        </select>
+
+
+    </form>
+
     
 </body>
 </html>
