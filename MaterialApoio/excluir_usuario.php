@@ -12,7 +12,7 @@ if($_SESSION['perfil'] !=1) {
 $usuarios = [];
 
 //busca todos os usuarios cadastrados em ordem alfabetica
-$sql = "SELECT * FROM usuarios ORDER BY nome ASC";
+$sql = "SELECT * FROM usuario ORDER BY nome ASC";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -33,3 +33,45 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
     }
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Usuario</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="js/bootstrap.js">
+
+</head>
+<body>
+    <h2>Excluir Usuario</h2>
+    <?php if(!empty($usuarios)): ?>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Perfil</th>
+                <th>Ações</th>
+            </tr>
+            <?php foreach($usuarios as $usuario): ?>
+                <tr>
+                    <td><?=htmlspecialchars($usuario['id_usuario'])?></td>
+                    <td><?=htmlspecialchars($usuario['nome'])?></td>
+                    <td><?=htmlspecialchars($usuario['email'])?></td>
+                    <td><?=htmlspecialchars($usuario['id_perfil'])?></td>
+                    <td>
+                        <a href="excluir_usuario.php?id=<?=htmlspecialchars($usuario['id_usuario'])?>"onclick="return confirm('Tem certeza que deseja excluir este usuario?')">Excluir</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php else: ?>
+        <p>Nenhum Usuário encontrado.</p>
+    <?php endif; ?>
+
+    <a href="principal.php">Voltar</a>
+</body>
+</html>
