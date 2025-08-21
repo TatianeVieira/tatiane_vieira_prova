@@ -74,5 +74,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         senha2.type=tipo;
     }
 </script>
+<center>
+    <address>
+        Tatiane Vieira / Estudante / Tecnico em Deenvolvimento de Sistemas
+    </address>
+</center>
 </body>
 </html>

@@ -75,5 +75,10 @@ $fornecedor = $stmt->fetchALL(PDO::FETCH_ASSOC);
         <p>Nenhum Fornecedor encontrado</p>
     <?php endif;?>
     <a href="principal.php">Voltar</a>
+    <center>
+    <address>
+        Tatiane Vieira / Estudante / Tecnico em Deenvolvimento de Sistemas
+    </address>
+</center>
 </body>
 </html>

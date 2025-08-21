@@ -75,5 +75,10 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
     </form>
 
     <a href="principal.php">voltar</a>
+    <center>
+    <address>
+        Tatiane Vieira / Estudante / Tecnico em Deenvolvimento de Sistemas
+    </address>
+</center>
 </body>
 </html>

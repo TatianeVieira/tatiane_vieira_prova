@@ -90,5 +90,10 @@ $opcoes_menu = $permissoes[$id_perfil];
             <?php endforeach;?>
         </ul>
     </nav>
+    <center>
+    <address>
+        Tatiane Vieira / Estudante / Tecnico em Deenvolvimento de Sistemas
+    </address>
+</center>
 </body>
 </html>
