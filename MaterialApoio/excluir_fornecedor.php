@@ -11,7 +11,7 @@ if($_SESSION['perfil'] !=1) {
 //inicializa variavel para aramazenar usuario
 $fornecedores = [];
 
-//busca todos os usuarios cadastrados em ordem alfabetica
+//busca todos os fornecedores cadastrados em ordem alfabetica
 $sql = "SELECT * FROM fornecedor ORDER BY nome_fornecedor ASC";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
@@ -21,10 +21,10 @@ $fornecedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id_fornecedor = $_GET['id'];
 
-    //exclui o usuario do banco dados
-    $sql = "DELETE fornecedor WHERE id_fornecedor = :id";
+    //exclui o fornecedor do banco dados
+    $sql = "DELETE FROM fornecedor WHERE id_fornecedor = :id_fornecedor";
     $stmt= $pdo->prepare($sql);
-    $stmt->bindParam(':id', $id_fornecedor, PDO::FETCH_INT);
+    $stmt->bindParam(':id_fornecedor', $id_fornecedor, PDO::PARAM_INT);
 
     if($stmt->execute()) {
         echo "<script>alert('Fornecedor excluido com sucerro!');window.location.href='excluir_fornecedor.php';</script>";
@@ -41,9 +41,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excluir Fornecedor</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="js/bootstrap.js">
-
+    
 </head>
 <body>
     <h2>Excluir Fornecedor</h2>
@@ -52,18 +50,21 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
+                <th>Endereço</th>
+                <th>Telefone</th>
                 <th>Email</th>
-                <th>Perfil</th>
-                <th>Ações</th>
+                <th>Contato</th>
             </tr>
             <?php foreach($fornecedores as $fornecedor): ?>
                 <tr>
                     <td><?=htmlspecialchars($fornecedor['id_fornecedor'])?></td>
                     <td><?=htmlspecialchars($fornecedor['nome_fornecedor'])?></td>
+                    <td><?=htmlspecialchars($fornecedor['endereco'])?></td>
+                    <td><?=htmlspecialchars($fornecedor['telefone'])?></td>
                     <td><?=htmlspecialchars($fornecedor['email'])?></td>
-                    <td><?=htmlspecialchars($fornecedor['id_perfil'])?></td>
+                    <td><?=htmlspecialchars($fornecedor['contato'])?></td>
                     <td>
-                        <a href="excluir_fornecedor.php?id=<?=htmlspecialchars($fornecedor['id_fornecedor'])?>"onclick="return confirm('Tem certeza que deseja excluir este Fornecedor?')">Excluir</a>
+                        <a href="excluir_fornecedor.php?id=<?=htmlspecialchars($fornecedor['id_fornecedor'])?>" onclick="return confirm('Tem certeza que deseja excluir este usuario?')">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
