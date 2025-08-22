@@ -79,13 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" ){
         <label for="email">E-mail:</label>
         <input type="email" id="email" name="email" value="<?=htmlspecialchars($fornecedor['email'])?>"required>
 
-        <label for="id_perfil">Perfil</label>
-        <select name="id_perfil" id="id_perfil">
-            <option value="1" <?php$usuario['id_perfil'] == 1? 'select':''?>>Administrador</option>
-            <option value="2" <?php$usuario['id_perfil'] == 2? 'select':''?>>Secretaria</option>
-            <option value="3" <?php$usuario['id_perfil'] == 3? 'select':''?>>Almoxarife</option>
-            <option value="4" <?php$usuario['id_perfil'] == 4? 'select':''?>>Cliente</option>
-        </select>
+       
 
         <button type="submit">Alterar</button>
         <button type="reset">Cancelar</button>
