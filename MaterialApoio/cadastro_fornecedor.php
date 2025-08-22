@@ -2,26 +2,24 @@
 session_start();
 require_once 'conexao.php';
 
-//verifica se o usuario tem permissao 
+//verifica se o fornecedor tem permissao 
 //supondo que o perfil 1 seja o admin 
 
-if($_SESSION['perfil']!=1) {
+if($_SESSION['perfil']!=1 && $_SESSION['perfil']!=3) {
     echo "Acesso Negado";
 }
 
 if($_SERVER['REQUEST_METHOD']=="POST") {
-    $nome_fornecedor = $_POST['nome'];
+    $nome_fornecedor = $_POST['nome_fornecedor'];
     $email = $_POST['email'];
-    $id_fornecedor = $_POST['id_perfil'];
     $telefone = $_POST['telefone'];
     $endereco = $_POST['endereco'];
     $contato = $_POST['contato'];
 
-    $sql = "INSERT INTO fornecedor (nome_fornecedor, email, id_fornecedor, telefone, endereco, contato) values (:nome, :email, :senha, :id_fornecedor, :endereco, :telefone, :contato)";
+    $sql = "INSERT INTO fornecedor (nome_fornecedor, email, telefone, endereco, contato) values (:nome_fornecedor, :email, :endereco, :telefone, :contato)";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':nome', $nome_fornecedor);
+    $stmt->bindParam(':nome_fornecedor', $nome_fornecedor);
     $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':senha', $senha);
     $stmt->bindParam(':telefone', $telefone);
     $stmt->bindParam(':endereco', $endereco);
     $stmt->bindParam(':contato', $contato);
@@ -46,17 +44,17 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
 <body>
     <h2>Cadastrar Fornecedor</h2>
     <form action="cadastro_fornecedor.php" method="POST"> 
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
+        <label for="nome_fornecedor">Nome:</label>
+        <input type="text" id="nome_fornecedor" name="nome_fornecedor" placeholder="Digite seu nome" required>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" placeholder="Exemplo@email" required>
 
         <label for="telefone">telefone:</label>
-        <input type="num" id="telefone" name="telefone" required>
+        <input type="num" id="telefone" name="telefone" placeholder="(47) 984303837" required>
         
         <label for="endereco">endereco:</label>
-        <input type="text" id="endereco" name="endereco" required>
+        <input type="text" id="endereco" name="endereco" placeholder="Rua exemplo" required>
 
         <label for="contato">contato:</label>
         <input type="num" id="contato" name="contato" required>
