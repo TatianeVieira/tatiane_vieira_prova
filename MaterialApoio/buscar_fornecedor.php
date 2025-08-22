@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"]== "POST" && !empty($_POST['busca'])) {
     $stmt=$pdo->prepare($sql);
 }
 $stmt->execute();
-$fornecedor = $stmt->fetchALL(PDO::FETCH_ASSOC);
+$fornecedores = $stmt->fetchALL(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -52,21 +52,24 @@ $fornecedor = $stmt->fetchALL(PDO::FETCH_ASSOC);
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
+                <th>Endereço</th>
+                <th>Telefone</th>
                 <th>Email</th>
-                <th>Perfil</th>
-                <th>Açoes</th>
+                <th>Contato</th>
             </tr>
         <?php foreach($fornecedores as $fornecedor): ?>
 
             <tr>
                 <td><?=htmlspecialchars($fornecedor['id_fornecedor'])?></td>
                 <td><?=htmlspecialchars($fornecedor['nome_fornecedor'])?></td>
+                <td><?=htmlspecialchars($fornecedor['endereco'])?></td>
+                <td><?=htmlspecialchars($fornecedor['telefone'])?></td>
                 <td><?=htmlspecialchars($fornecedor['email'])?></td>
-                <td><?=htmlspecialchars($fornecedor['id_perfil'])?></td>
+                <td><?=htmlspecialchars($fornecedor['contato'])?></td>
                 <td>
-                    <a href="alterar_fornecedor.php?id=<?htmlspecialchars($fornecedor['id_fornecedor'])?>">Alterar</a>
+                    <a href="alterar_fornecedor.php?id=<?=htmlspecialchars($fornecedor['id_fornecedor'])?>">Alterar</a>
 
-                    <a href="excluir_fornecedor.php?id=<?htmlspecialchars($fornecedor['id_fornecedor'])?>"onclick="return confirm('Tem certeza que voce quer excluir?')">Exluir</a>
+                    <a href="excluir_fornecedor.php?id=<?=htmlspecialchars($fornecedor['id_fornecedor'])?>"onclick="return confirm('Tem certeza que voce quer excluir?')">Exluir</a>
                 </td>
             </tr>
         <?php endforeach;?>
