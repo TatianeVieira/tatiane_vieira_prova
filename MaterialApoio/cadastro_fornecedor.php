@@ -51,13 +51,13 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
         <input type="email" id="email" name="email" placeholder="Exemplo@email" required>
 
         <label for="telefone">telefone:</label>
-        <input type="num" id="telefone" name="telefone" placeholder="(47) 984303837" required>
+        <input type="text" id="telefone" name="telefone" placeholder="(47) 984303837" required>
         
         <label for="endereco">endereco:</label>
         <input type="text" id="endereco" name="endereco" placeholder="Rua exemplo" required>
 
         <label for="contato">contato:</label>
-        <input type="num" id="contato" name="contato" required>
+        <input type="text" id="contato" name="contato" required>
         
 
 
