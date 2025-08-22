@@ -60,13 +60,6 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
         <input type="num" id="contato" name="contato" required>
         
 
-        <label for="id_perfil">Perfil:</label>
-        <select id="id_perfil" name="id_perfil">
-            <option value="1">Administrador</option>
-            <option value="2">Secretaria</option>
-            <option value="3">Almoxerife</option>
-            <option value="4">Cliente</option>
-        </select>
 
         <button type="submit">Salvar</button>
         <button type="reset">Cancelar</button>
