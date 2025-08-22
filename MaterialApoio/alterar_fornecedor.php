@@ -2,7 +2,7 @@
 session_start();
 require_once 'conexao.php';
 
-//verifique se o usuario tem permissao de admin ou secreatria
+//verifique se o fornecedor tem permissao de admin ou secreatria
 if($_SESSION['perfil'] !=1) {
     echo "<script>alert('Acesso Negado!');window.location.href='principal.php';</script>";
     exit();
@@ -67,6 +67,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST" ){
         <label for="nome_fornecedor">Nome:</label>
         <input type="text" id="nome_fornecedor" name="nome_fornecedor" value="<?=htmlspecialchars($fornecedor['nome_fornecedor'])?>"required>
 
+        <label for="contato">Contato:</label>
+        <input type="text" id="contato" name="contato" value="<?=htmlspecialchars($fornecedor['contato'])?>"required>
+
+        <label for="endereco">Endereco:</label>
+        <input type="text" id="endereco" name="endereco" value="<?=htmlspecialchars($fornecedor['endereco'])?>"required>
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" value="<?=htmlspecialchars($fornecedor['telefone'])?>"required>
+
         <label for="email">E-mail:</label>
         <input type="email" id="email" name="email" value="<?=htmlspecialchars($fornecedor['email'])?>"required>
 
@@ -77,11 +86,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" ){
             <option value="3" <?php$usuario['id_perfil'] == 3? 'select':''?>>Almoxarife</option>
             <option value="4" <?php$usuario['id_perfil'] == 4? 'select':''?>>Cliente</option>
         </select>
-<!--se o usuario logado for adnin exibir opção de alterar senha-->
-        <?php if($_SESSION['perfil'] == 1): ?>
-            <label for="nova_senha">Nova Senha</label>
-            <input type="password" id="nova_senha" name="nova_senha">
-        <?php endif;?>
 
         <button type="submit">Alterar</button>
         <button type="reset">Cancelar</button>

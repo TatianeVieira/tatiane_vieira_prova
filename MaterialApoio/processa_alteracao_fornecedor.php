@@ -10,21 +10,22 @@ if($_SESSION['perfil'] !=1) {
 if($_SERVER["REQUEST_METHOD"] =="POST") {
     $id_fornecedor = $_POST['id_fornecedor'];
     $nome_fornecedor = $_POST['nome_fornecedor'];
+    $endereco = $_POST['endereco'];
+    $telefone = $_POST['telefone'];
     $email = $_POST['email'];
-    $nova_senha = !empty($_POST['nova_senha'])? password_hash($_POST['nova_senha'], PASSWORD_DEFAULT): NULL;
+    $email = $_POST['contato'];
 
     //ATUALIZA OS DADOS DO USUARIO
-    if($nova_senha){
-        $sql = "UPDATE fornecedor SET nome_fornecedor = :nome, email =:email = senha = :senha WHERE id_fornecedor = :id_fornecedor";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':senha', $nova_senha);
-    }else{
-        $sql="UPDATE fornecedor SET nome_fornecedor = :nome_fornecedor, email = :email, id_perfil = :id_perfil WHERE id_fornecedor = :id_fornecedor";
-        $stmt = $pdo->prepare($sql);
-    }
-        $stmt->bindParam(':nome_fornecedor', $nome_fornecedor);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':id_fornecedor', $id_fornecedor);
+    $sql="UPDATE fornecedor SET nome_fornecedor = :nome_fornecedor, email=:email,endereco=:endereco,telefone=:telefone, contato=:contato WHERE id_fornecedor = :id_fornecedor";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':nome_fornecedor', $nome_fornecedor);
+    $stmt->bindParam(':endereco', $endereco);
+    $stmt->bindParam(':telefone', $telefone);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':contato', $contato);
+    $stmt->bindParam(':telefone', $telefone);
+    $stmt->bindParam(':id_fornecedor', $id_fornecedor);
+
 
     if($stmt->execute()) {
         echo "<script>alert('Fornecedor atualizado com sucesso!');window.location.href='buscar_fornecedor.php';</script>";
